@@ -29,6 +29,10 @@ function App() {
 		const newSize = parseInt(event.target.value);
 		setPageSize(newSize);
 		setPage(1);
+
+		if (event.target.value === "") {
+			setPageSize(pageSize);
+		}
 	};
 
 	return (
