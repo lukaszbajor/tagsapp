@@ -33,7 +33,11 @@ function App() {
 
 	return (
 		<>
-			<TextField onChange={handlePageSizeChange} />
+			<TextField
+				type="number"
+				label="Count of tags"
+				onChange={handlePageSizeChange}
+			/>
 			<TagsList
 				tags={data ? data.items : []}
 				isLoading={isLoading}
