@@ -25,9 +25,15 @@ function App() {
 		setPage(newPage);
 	};
 
+	const handlePageSizeChange = (event) => {
+		const newSize = parseInt(event.target.value);
+		setPageSize(newSize);
+		setPage(1);
+	};
+
 	return (
 		<>
-			<TextField />
+			<TextField onChange={handlePageSizeChange} />
 			<TagsList
 				tags={data ? data.items : []}
 				isLoading={isLoading}
