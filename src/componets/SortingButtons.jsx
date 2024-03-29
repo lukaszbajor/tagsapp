@@ -1,12 +1,19 @@
 import {
+	Box,
 	FormControl,
-	InputLabel,
 	Select,
 	MenuItem,
 	Button,
+	InputLabel,
 } from "@mui/material";
 
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 function SortingSelect({ order, sort, onOrderChange, onSortChange }) {
+	const theme = useTheme();
+	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
 	const handleSortChange = (event) => {
 		onSortChange(event.target.value);
 	};
@@ -17,19 +24,33 @@ function SortingSelect({ order, sort, onOrderChange, onSortChange }) {
 	};
 
 	return (
-		<>
+		<Box
+			sx={{
+				display: "flex",
+				justifyContent: "space-between",
+				marginTop: isMobile ? "15px" : "0",
+			}}
+		>
 			<FormControl>
-				<InputLabel>Sort by</InputLabel>
-				<Select value={sort} onChange={handleSortChange}>
+				<InputLabel id="select-label">Sort by</InputLabel>
+				<Select
+					sx={{
+						marginRight: "10px",
+					}}
+					labelId="select-label"
+					value={sort}
+					onChange={handleSortChange}
+					label="Sort by"
+				>
 					<MenuItem value="name">Name</MenuItem>
 					<MenuItem value="popular">Popular</MenuItem>
 					<MenuItem value="activity">Activity</MenuItem>
 				</Select>
 			</FormControl>
-			<Button onClick={handleOrderChange}>
+			<Button variant="contained" color="primary" onClick={handleOrderChange}>
 				Direction: {order === "asc" ? "asc" : "desc"}
 			</Button>
-		</>
+		</Box>
 	);
 }
 

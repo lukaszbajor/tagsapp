@@ -5,7 +5,8 @@ function Tag({ tag }) {
 		<ListItem
 			sx={{
 				marginTop: "5px",
-				border: "1px solid blue",
+				bgcolor: "#63a9d8",
+				borderRadius: "4px",
 			}}
 		>
 			<ListItemText
@@ -13,6 +14,7 @@ function Tag({ tag }) {
 					display: "flex",
 					alignItems: "center",
 					justifyContent: "space-between",
+					color: "#ffffff",
 				}}
 				primary={<strong>{tag.name}</strong>}
 				secondary={tag.count}

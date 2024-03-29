@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
 function NavigationButtons({ tags, currentPage, onPageChange }) {
 	const handlePreviousPage = () => {
@@ -10,15 +10,21 @@ function NavigationButtons({ tags, currentPage, onPageChange }) {
 	};
 
 	return (
-		<div>
+		<Box
+			sx={{
+				display: "flex",
+				alignItems: "center",
+				alignSelf: "center",
+			}}
+		>
 			<Button onClick={handlePreviousPage} disabled={currentPage === 1}>
 				Previous
 			</Button>
-			<span>Page {currentPage}</span>
+			<Typography>Page {currentPage}</Typography>
 			<Button onClick={handleNextPage} disabled={!tags.has_more}>
 				Next
 			</Button>
-		</div>
+		</Box>
 	);
 }
 
