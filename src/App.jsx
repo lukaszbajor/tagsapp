@@ -22,7 +22,7 @@ function App() {
 			`https://api.stackexchange.com/2.3/tags?page=${page}&pagesize=${pageSize}&order=${order}&sort=${sort}&site=stackoverflow`
 		);
 		const data = await response.json();
-		console.log(data.items);
+		console.log(data); // Dodaj tę linię
 		return data;
 	}
 
@@ -39,8 +39,7 @@ function App() {
 		const newSize = parseInt(event.target.value);
 		setPageSize(newSize);
 		setPage(1);
-
-		if (event.target.value === "") {
+		if (event.target.value === "" || newSize <= 0) {
 			setPageSize(pageSize);
 		}
 	};
@@ -83,6 +82,7 @@ function App() {
 				<TextField
 					type="number"
 					label="Count of tags"
+					inputProps={{ min: 0 }}
 					onChange={handlePageSizeChange}
 				/>
 				<SortingSelect
@@ -92,14 +92,11 @@ function App() {
 					onSortChange={handleSortChange}
 				/>
 			</Box>
-			<TagsList
-				tags={data ? data.items : []}
-				isLoading={isLoading}
-				isError={isError}
-			/>
+			<TagsList isLoading={isLoading} isError={isError} tags={data} />
+
 			<NavigationButtons
 				currentPage={page}
-				tags={data ? data : {}}
+				tags={data}
 				onPageChange={handlePageChange}
 			/>
 		</Box>

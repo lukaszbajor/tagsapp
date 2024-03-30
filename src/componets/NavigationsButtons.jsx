@@ -10,21 +10,24 @@ function NavigationButtons({ tags, currentPage, onPageChange }) {
 	};
 
 	return (
-		<Box
-			sx={{
-				display: "flex",
-				alignItems: "center",
-				alignSelf: "center",
-			}}
-		>
-			<Button onClick={handlePreviousPage} disabled={currentPage === 1}>
-				Previous
-			</Button>
-			<Typography>Page {currentPage}</Typography>
-			<Button onClick={handleNextPage} disabled={!tags.has_more}>
-				Next
-			</Button>
-		</Box>
+		tags &&
+		!tags.error_id && (
+			<Box
+				sx={{
+					display: "flex",
+					alignItems: "center",
+					alignSelf: "center",
+				}}
+			>
+				<Button onClick={handlePreviousPage} disabled={currentPage === 1}>
+					Previous
+				</Button>
+				<Typography>Page {currentPage}</Typography>
+				<Button onClick={handleNextPage} disabled={tags && !tags.has_more}>
+					Next
+				</Button>
+			</Box>
+		)
 	);
 }
 
