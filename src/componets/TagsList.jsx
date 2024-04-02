@@ -3,10 +3,10 @@
 import Tag from "./Tag";
 import { List, CircularProgress, Typography } from "@mui/material";
 
-function TagsList({ tags, isLoading }) {
+function TagsList({ tags, isLoading, isError, error }) {
 	return (
 		<>
-			{tags && tags.error_id ? (
+			{isError ? (
 				<Typography
 					sx={{
 						marginTop: "20px",
@@ -17,7 +17,7 @@ function TagsList({ tags, isLoading }) {
 						bgcolor: "#e2e2e2",
 					}}
 				>
-					Error: {tags.error_message}
+					{error.message}
 				</Typography>
 			) : (
 				<List

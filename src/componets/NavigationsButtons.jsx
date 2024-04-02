@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 
-function NavigationButtons({ tags, currentPage, onPageChange }) {
+function NavigationButtons({ tags, currentPage, onPageChange, isError }) {
 	const handlePreviousPage = () => {
 		onPageChange(currentPage - 1);
 	};
@@ -10,8 +10,7 @@ function NavigationButtons({ tags, currentPage, onPageChange }) {
 	};
 
 	return (
-		tags &&
-		!tags.error_id && (
+		!isError && (
 			<Box
 				sx={{
 					display: "flex",

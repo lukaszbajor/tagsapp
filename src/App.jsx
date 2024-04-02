@@ -6,6 +6,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useQuery } from "react-query";
 import NavigationButtons from "./componets/NavigationsButtons";
 import SortingSelect from "./componets/SortingButtons";
+import axios from "axios";
 import "./App.css";
 
 function App() {
@@ -18,39 +19,49 @@ function App() {
 	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
 	async function fetchTags() {
-		const response = await fetch(
-			`https://api.stackexchange.com/2.3/tags?page=${page}&pagesize=${pageSize}&order=${order}&sort=${sort}&site=stackoverflow`
-		);
-		const data = await response.json();
-		console.log(data); // Dodaj tę linię
-		return data;
+		try {
+			const response = await axios.get(
+				`https://api.stackexchange.com/2.3/tags?page=${page}&pagesize=${pageSize}&order=${order}&sort=${sort}&site=stackoverflow`
+			);
+
+			return response.data;
+		} catch (error) {
+			let errorMessage = "Network response was not ok";
+
+			if (error.response && error.response.data) {
+				errorMessage = `Error code: ${error.response.data.error_id} | Error message: ${error.response.data.error_message} | Error name: ${error.response.data.error_name}`;
+			}
+
+			throw new Error(errorMessage);
+		}
 	}
 
-	const { data, isLoading, isError } = useQuery(
+	const { data, isLoading, isError, error } = useQuery(
 		[page, pageSize, order, sort],
 		() => fetchTags()
 	);
 
-	const handlePageChange = (newPage) => {
+	function handlePageChange(newPage) {
 		setPage(newPage);
-	};
+	}
 
-	const handlePageSizeChange = (event) => {
+	function handlePageSizeChange(event) {
 		const newSize = parseInt(event.target.value);
 		setPageSize(newSize);
 		setPage(1);
 		if (event.target.value === "" || newSize <= 0) {
 			setPageSize(pageSize);
 		}
-	};
+		console.log("Error" + isError);
+	}
 
-	const handleOrderChange = (newOrder) => {
+	function handleOrderChange(newOrder) {
 		setOrder(newOrder);
-	};
+	}
 
-	const handleSortChange = (newSort) => {
+	function handleSortChange(newSort) {
 		setSort(newSort);
-	};
+	}
 
 	return (
 		<Box
@@ -82,7 +93,7 @@ function App() {
 				<TextField
 					type="number"
 					label="Count of tags"
-					inputProps={{ min: 0 }}
+					inputProps={{ min: 1 }}
 					onChange={handlePageSizeChange}
 				/>
 				<SortingSelect
@@ -92,11 +103,17 @@ function App() {
 					onSortChange={handleSortChange}
 				/>
 			</Box>
-			<TagsList isLoading={isLoading} isError={isError} tags={data} />
+			<TagsList
+				isLoading={isLoading}
+				isError={isError}
+				error={error}
+				tags={data}
+			/>
 
 			<NavigationButtons
 				currentPage={page}
 				tags={data}
+				isError={isError}
 				onPageChange={handlePageChange}
 			/>
 		</Box>
