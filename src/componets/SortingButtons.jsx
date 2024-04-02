@@ -10,7 +10,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-function SortingSelect({ order, sort, onOrderChange, onSortChange }) {
+function SortingButtons({ order, sort, onOrderChange, onSortChange }) {
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -54,4 +54,4 @@ function SortingSelect({ order, sort, onOrderChange, onSortChange }) {
 	);
 }
 
-export default SortingSelect;
+export default SortingButtons;

@@ -5,7 +5,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useQuery } from "react-query";
 import NavigationButtons from "./componets/NavigationsButtons";
-import SortingSelect from "./componets/SortingButtons";
+import SortingButtons from "./componets/SortingButtons";
 import axios from "axios";
 import "./App.css";
 
@@ -61,6 +61,7 @@ function App() {
 
 	function handleSortChange(newSort) {
 		setSort(newSort);
+		setPage(1);
 	}
 
 	return (
@@ -96,7 +97,7 @@ function App() {
 					inputProps={{ min: 1 }}
 					onChange={handlePageSizeChange}
 				/>
-				<SortingSelect
+				<SortingButtons
 					sort={sort}
 					order={order}
 					onOrderChange={handleOrderChange}
