@@ -3,7 +3,7 @@
 import Tag from "./Tag";
 import { List, CircularProgress, Typography } from "@mui/material";
 
-function TagsList({ tags, isLoading, isError, error }) {
+export function TagsList({ tags, isLoading, isError, error }) {
 	return (
 		<>
 			{isError ? (
@@ -43,4 +43,4 @@ function TagsList({ tags, isLoading, isError, error }) {
 	);
 }
 
-export default TagsList;
+// export default TagsList;

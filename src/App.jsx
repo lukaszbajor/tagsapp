@@ -1,11 +1,11 @@
 import { useState } from "react";
-import TagsList from "./componets/TagsList";
+import TagsList from "./components/TagsList";
 import { Box, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useQuery } from "react-query";
-import NavigationButtons from "./componets/NavigationsButtons";
-import SortingButtons from "./componets/SortingButtons";
+import NavigationButtons from "./components/NavigationsButtons";
+import SortingButtons from "./components/SortingButtons";
 import axios from "axios";
 import "./App.css";
 
