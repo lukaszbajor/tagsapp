@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { ListItem, ListItemText } from "@mui/material";
-function Tag({ tag }) {
+export default function Tag({ tag }) {
 	return (
 		<ListItem
 			sx={{
@@ -22,5 +22,3 @@ function Tag({ tag }) {
 		</ListItem>
 	);
 }
-
-export default Tag;

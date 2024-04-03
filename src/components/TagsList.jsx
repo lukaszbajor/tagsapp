@@ -1,9 +1,7 @@
-/* eslint-disable react/jsx-key */
-/* eslint-disable react/prop-types */
 import Tag from "./Tag";
 import { List, CircularProgress, Typography } from "@mui/material";
 
-export function TagsList({ tags, isLoading, isError, error }) {
+export default function TagsList({ tags, isLoading, isError, error }) {
 	return (
 		<>
 			{isError ? (
@@ -42,5 +40,3 @@ export function TagsList({ tags, isLoading, isError, error }) {
 		</>
 	);
 }
-
-// export default TagsList;

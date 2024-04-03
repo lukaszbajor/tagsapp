@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 
-function NavigationButtons({ tags, currentPage, onPageChange, isError }) {
+export default function NavigationButtons({ tags, currentPage, onPageChange, isError }) {
 	const handlePreviousPage = () => {
 		onPageChange(currentPage - 1);
 	};
@@ -22,7 +22,10 @@ function NavigationButtons({ tags, currentPage, onPageChange, isError }) {
 					Previous
 				</Button>
 				<Typography>Page {currentPage}</Typography>
-				<Button onClick={handleNextPage} disabled={tags && !tags.has_more}>
+				<Button
+					onClick={handleNextPage}
+					disabled={tags && tags.has_more === false}
+				>
 					Next
 				</Button>
 			</Box>
@@ -30,4 +33,3 @@ function NavigationButtons({ tags, currentPage, onPageChange, isError }) {
 	);
 }
 
-export default NavigationButtons;

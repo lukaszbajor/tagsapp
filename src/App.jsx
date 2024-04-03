@@ -4,7 +4,7 @@ import { Box, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useQuery } from "react-query";
-import NavigationButtons from "./components/NavigationsButtons";
+import NavigationButtons from "./components/NavigationButtons";
 import SortingButtons from "./components/SortingButtons";
 import axios from "axios";
 import "./App.css";
@@ -52,7 +52,6 @@ function App() {
 		if (event.target.value === "" || newSize <= 0) {
 			setPageSize(pageSize);
 		}
-		console.log("Error" + isError);
 	}
 
 	function handleOrderChange(newOrder) {
